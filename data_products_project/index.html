@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Developing Data Products</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Developing Data Products">
+  <meta name="author" content="Filipe Pais Lenfers">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Developing Data Products</h1>
+    <h2>Iris Classifier</h2>
+    <p>Filipe Pais Lenfers<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introduction</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The idea was to create a iris classifier using shiny, following this steps:</p>
+
+<ol>
+<li>Create a model using random forests technique over the iris dataset present in the datasets library.</li>
+<li>Use the trainned model to classify iris data in a shiny application.</li>
+<li>Publish the shiny application.</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How the model was built</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Creating the model:</p>
+
+<pre><code class="r">library(datasets)
+library(caret)
+data(iris)
+model &lt;- train(Species ~ ., data=iris, method=&quot;rf&quot;)
+model$results
+</code></pre>
+
+<pre><code>##   mtry  Accuracy     Kappa AccuracySD    KappaSD
+## 1    2 0.9480673 0.9212410 0.02767134 0.04195888
+## 2    3 0.9493973 0.9232875 0.02880772 0.04360040
+## 3    4 0.9496353 0.9237073 0.02660767 0.04012717
+</code></pre>
+
+<p>Save the model to use later in the shiny app:</p>
+
+<pre><code class="r">save(model,file=&quot;model.RData&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How to use it</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Access the application in this url: <a href="https://filipelenfers.shinyapps.io/dataproductsproject/">https://filipelenfers.shinyapps.io/dataproductsproject/</a> .<br></li>
+<li>Change the values on the sliders in the &quot;Input data&quot; area.<br></li>
+<li>See that the classification is automatically updated in the &quot;Classification&quot; area.<br></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How to contribute</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The source code of the app is avaliable at <a href="https://github.com/filipelenfers/developing-data-products-project">https://github.com/filipelenfers/developing-data-products-project</a>.<br>
+You can fork it and change the app as you like!</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='How the model was built'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='How to use it'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='How to contribute'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
